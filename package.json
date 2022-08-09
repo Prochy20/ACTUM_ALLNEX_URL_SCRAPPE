@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/app.js",
-    "patrik:je:cumak": "nodemon ./src/app.js"
+    "patrik:je:cumak": "nodemon ./src/app.js",
+    "start": "node ./src/app.js"
   },
   "keywords": [],
   "author": "",

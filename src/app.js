@@ -8,7 +8,7 @@ const rawData = fs
     .readFileSync(path.join(__dirname, './data/url_all_uat.csv'))
     .toString();
 
-const uatBaseURL = 'https://allnex-web-uat.azurewebsites.net/';
+const uatBaseURL = 'https://allnex-web-test.azurewebsites.net/';
 const stageBaseURL = 'https://allnex-web-stage.azurewebsites.net/';
 
 const data = {
@@ -21,12 +21,16 @@ rawData
     .forEach((row, index) => {
         if(index === 0) return;
         const [uat, stage] = row.split(delimiter);
-        if (uat.length > 0) {
-            data.uat.push(uat.replace('\r', '').replace('\n', '').trim());
+
+        const stageClean = stage.replace('\r', '').replace('\n', '').trim();
+        const uatClean = uat.replace('\r', '').replace('\n', '').trim();
+        
+        if (uat.length > 0 && uatClean.length > 0) {
+            data.uat.push(uatClean);
         }
 
-        if (stage.length > 0) {
-            data.stage.push(stage.replace('\r', '').replace('\n', '').trim());
+        if (stage.length > 0 && stageClean.length > 0) {
+            data.stage.push(stageClean);
         }
 
     });
